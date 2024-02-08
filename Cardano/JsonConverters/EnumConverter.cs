@@ -18,15 +18,13 @@ namespace Cardano.JsonConverters
             {
                 _converter = (JsonConverter<T>)options.GetConverter(typeof(T));
             }
-            var test = typeof(T);
             // cache the underlying type
             _underlyingType = Nullable.GetUnderlyingType(typeof(T));
         }
 
         public override bool CanConvert(Type typeToConvert)
         {
-            //return typeof(T).IsAssignableFrom(typeToConvert);
-            return true;
+            return typeof(T).IsAssignableFrom(typeToConvert);
         }
 
         public override T Read(ref Utf8JsonReader reader,
@@ -47,7 +45,8 @@ namespace Cardano.JsonConverters
             && !Enum.TryParse(_underlyingType, value,
                 ignoreCase: true, out result))
             {
-                result = null;
+                LoggerService.LogWarning($"Unexpected country code in input file: {value}");
+                return default;
             }
 
             return (T)result;
