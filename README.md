@@ -4,7 +4,7 @@
 This console application takes an input CSV, enriches it, and outputs the enriched data in a new file in the directory or your choosing, and archives the original file also in another directory of your choosing.
 
 ## Clone the repository
-You will need to clone the repository to your local machine to run the app.
+You will need to clone the repository to your local machine to run the app or you will need a copy of the executable and artifacts.
 
 ## Configuration
 To modify the directories and filenames used by the app, you will need to open the appsettings.json file in the root of the project folder.
@@ -27,4 +27,4 @@ After configuring the appsettings.json file, ensure the configured input directo
 - rate
 - lei
 
-Once this is done, open the solution in Visual Studio, and run the app. If the process runs successfully, the input file will have been moved into the configured archive directory and a new enriched version of the file will exist in the configured output directory. Both files will be prefixed with a matching datetime stamp as a visual link between the files.
+Once this is done, open the solution in Visual Studio and run the app or, if you have the executable, run that. If the process runs successfully, the input file will have been moved into the configured archive directory and a new enriched version of the file will exist in the configured output directory. Both files will be prefixed with a matching datetime stamp as a visual link between the files.
