@@ -17,7 +17,7 @@ internal class Program
                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
             IConfiguration config = builder.Build(); ;
-            var fileService = new FileService(config["fileService:inputfilePath"], config["fileService:outputFileDirectory"], config["fileService:outputFilename"], config["fileService:archiveFileDirectory"], config["fileService.archiveFilename"]);
+            var fileService = new FileService(config["fileService:inputfilePath"], config["fileService:outputFileDirectory"], config["fileService:outputFilename"], config["fileService:archiveFileDirectory"], config["fileService:archiveFilename"]);
             var transactions = fileService.GetTransactions();
 
             if (transactions == null)
