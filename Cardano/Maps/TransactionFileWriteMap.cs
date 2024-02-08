@@ -17,7 +17,7 @@ namespace Cardano.Maps
             Map(m => m.Lei).Name("lei").Index(7);
             Map(m => m.LegalName).Name("legal_name").Index(8);
             Map(m => m.Bic).Name("bic").Index(9);
-            Map(m => m.Cost).Name("cost").Index(10);
+            Map(m => m.Cost).Name("transaction_costs").Index(10);
             Map(m => m.Country).Ignore();
         }
     }
