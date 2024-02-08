@@ -1,7 +1,7 @@
 ﻿using Cardano.Models;
 using System.Net.Http.Json;
 
-namespace Cardano.Service
+namespace Cardano.Services
 {
     internal class GleifService
     {
@@ -17,13 +17,17 @@ namespace Cardano.Service
 
         public async Task<List<GleifResponseLeiRecord>> GetLeiRecords(IEnumerable<Transaction> transactions)
         {
+            // multiple transactions can have the same LEI, so let's remove duplicates
             var distinctLeis = transactions.Select(x => x.Lei).Distinct();
             var leiString = string.Join(",", distinctLeis);
-            GleifResponse response;
             var records = new List<GleifResponseLeiRecord>();
+
             try
             {
+                GleifResponse response;
                 int pageIndex = 1;
+
+                // fetch all pages for the given list of LEIs and combine them into one list to return
                 do
                 {
                     response = await _httpClient.GetFromJsonAsync<GleifResponse>(_url + leiString + _pageQueryParam + pageIndex++);
@@ -33,8 +37,8 @@ namespace Cardano.Service
             }
             catch (Exception ex)
             {
-                Console.WriteLine("There was an error fetching LEI data", ex.Message);
-                throw;
+               LoggerService.LogError("There was an error fetching LEI data", ex);
+               throw;
             }            
             
             return records;

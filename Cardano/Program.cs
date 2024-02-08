@@ -1,5 +1,4 @@
-﻿using Cardano.Models;
-using Cardano.Service;
+﻿using Cardano.Services;
 using Microsoft.Extensions.Configuration;
 
 internal class Program
